@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
-const cors = require('cors'); // Ikkada okasari matrame undali
+const cors = require('cors'); 
 const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -19,13 +19,14 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// CORS Configuration (Local + Live Rendu Pani Chestayi)
 app.use(cors({
   origin: [
-    'http://localhost:5173',           // Localhost (Mee Computer)
-    'https://pasovit-store.vercel.app' // Live Website
+    "http://localhost:5173",             // Local Testing
+    "https://pasovit-store.vercel.app"   // LIVE Vercel Link (⚠️ LAST LO SLASH '/' PETTODDU)
   ],
-  credentials: true 
+  credentials: true, // Login pani cheyalante idi mukhyam
+  methods: ["GET", "POST", "PUT", "DELETE"], // Ee methods allow cheyali
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 // --- ROUTES ---
