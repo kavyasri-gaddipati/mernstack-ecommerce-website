@@ -1,8 +1,12 @@
+import axios from 'axios';
+
 const api = axios.create({
-  // Ikkada Live Link Undali (Localhost kaadu)
+  // MEE RENDER LINK (Check spelling carefully)
   baseURL: 'https://pasovit-backend-kvpy.onrender.com/api', 
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+export default api;
