@@ -1,14 +1,12 @@
 const Cart = require('../models/Cart');
 
-// @desc    Get user cart
-// @route   GET /api/cart
-// @access  Private
+
 const getCart = async (req, res) => {
     try {
         const cart = await Cart.findOne({ user: req.user._id }).populate('items.product', 'name price image category');
         
         if (!cart) {
-            return res.json({ items: [] }); // Cart lekapothe empty array pampu
+            return res.json({ items: [] }); 
         }
         res.json(cart);
     } catch (error) {

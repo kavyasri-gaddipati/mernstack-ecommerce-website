@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Page Load ayinappudu: LocalStorage lo User unnada check cheyadam
+  
   useEffect(() => {
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {

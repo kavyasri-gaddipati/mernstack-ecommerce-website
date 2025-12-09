@@ -9,17 +9,13 @@ const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        // User already unnada check cheyadam
         const userExists = await User.findOne({ email });
         if (userExists) {
             return res.status(400).json({ message: 'User already exists' });
         }
-
-        // Password ni encrypt (hash) cheyadam
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // User ni create cheyadam
         const user = await User.create({
             name,
             email,
@@ -49,10 +45,10 @@ const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Email unda leda check cheyadam
+        
         const user = await User.findOne({ email });
 
-        // Password match avtunda leda check cheyadam
+        
         if (user && (await bcrypt.compare(password, user.password))) {
             generateToken(res, user._id); // Token create & cookie set
             res.json({

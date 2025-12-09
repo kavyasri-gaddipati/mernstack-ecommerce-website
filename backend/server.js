@@ -19,7 +19,7 @@ const app = express();
 // --- 2. MIDDLEWARE ---
 app.use(express.json()); // Body parser
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()); // Cookies read cheyadaniki (Auth kosam important)
+app.use(cookieParser()); 
 app.use(
   cors({
     origin: "http://localhost:3000", // Frontend URL

@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom'; // Redirect kosam
+import { useNavigate } from 'react-router-dom'; 
 import api from '../services/api';
-import AuthContext from './AuthContext'; // Login ayyara leda ani check cheyadaniki
+import AuthContext from './AuthContext'; 
 
 const CartContext = createContext();
 
@@ -10,12 +10,12 @@ export const CartProvider = ({ children }) => {
   const { user } = useContext(AuthContext); // User login status
   const navigate = useNavigate();
 
-  // User login ayithe, valla cart load cheyu
+  
   useEffect(() => {
     if (user) {
       fetchCart();
     } else {
-      setCart([]); // Logout ayithe cart empty cheyu
+      setCart([]); 
     }
   }, [user]);
 
@@ -23,7 +23,7 @@ export const CartProvider = ({ children }) => {
   const fetchCart = async () => {
     try {
       const { data } = await api.get('/cart');
-      setCart(data.items || []); // Items array ni save cheyu
+      setCart(data.items || []); 
     } catch (error) {
       console.error("Error fetching cart", error);
     }
@@ -39,7 +39,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       await api.post('/cart/add', { productId, size, qty });
-      await fetchCart(); // Cart update ayyaka malli fetch cheyu
+      await fetchCart(); 
       alert("Item Added to Cart! 🛒");
     } catch (error) {
       console.error("Error adding to cart", error);
